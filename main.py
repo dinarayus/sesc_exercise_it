@@ -1,46 +1,16 @@
-import heapq
-from collections import Counter, namedtuple
+# This is a sample Python script.
 
-#создаем бинарное дерево
-class Node(namedtuple("Node", ["left", "right"])):
-    def walk(self, code, acc):
-        self.left.walk(code, acc + "0") # асс - ответление
-        self.right.walk(code, acc + "1")
+# Press Shift+F10 to execute it or replace it with your code.
+# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
 
-class Leaf(namedtuple("Leaf", ["char"])):
-    def walk(self, code, acc):
-        code[self.char] = acc or "0"
+def print_hi(name):
+    # Use a breakpoint in the code line below to debug your script.
+    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
 
 
-def  huffman_encode(s):
-    h = [] #пустая очередь
-    for symbol, frequency in Counter(s).items():  #возвращает пару частота-символ
-        h.append((frequency, len(h), Leaf(symbol))) #заполняет очередь
+# Press the green button in the gutter to run the script.
+if __name__ == '__main__':
+    print_hi('PyCharm')
 
-    heapq.heapify(h) #строим очередь
-
-    count = len(h)
-    while len(h) > 1: # в очереди есть хотя бы два элемента
-        frequency1, _count1, left = heapq.heappop(h) # элемент с минимальной частотой
-        frequency2, _count2, right = heapq.heappop(h) # следующий элемент с минимальной частотой
-        heapq.heappush(h, (frequency1 + frequency2, count, Node(left, right))) # добавляем в очереь новый элемент
-        count += 1
-
-    code = {} #пустой словарь
-    if h:
-        [(_frequency, _count, root)] = h # root - начальный узел
-        root.walk(code,"")  # заполняем словар code
-    return code
-
-def main():
-    s = input()
-    code = huffman_encode(s)
-    encoded = "".join(code[symbol] for symbol in s)  # закодированная строка
-    print(len(code), len(encoded))
-    for symbol in sorted(code):
-        print("{}: {}".format(symbol, code[symbol]))
-    print(encoded)
-
-if __name__ == "__main__":
-    main()
+# See PyCharm help at https://www.jetbrains.com/help/pycharm/
