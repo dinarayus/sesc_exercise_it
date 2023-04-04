@@ -39,3 +39,21 @@ while ('>1' in strochka4) or ('>2' in strochka4) or ('>3' in strochka4):
     if '>3' in strochka4:
         strochka4 = strochka4.replace('>3', '1>')
 print('4)', strochka4.count('1') + strochka4.count('2') * 2)
+
+for n in range(1, 100):
+    strochka2  ="3"*15 + "2"*18 + "1"*n
+    while "31" in strochka2 or "33" in strochka2 or "21" in strochka2:
+        if "33" in strochka2:
+            strochka2 = strochka2.replace("33", "211")
+        if "21" in strochka2:
+            strochka2 = strochka2.replace("21", "1")
+        if "31" in strochka2:
+            strochka2 = strochka2.replace("31", "123")
+    num = strochka2
+    sum_digits = 0
+    for digit in num:
+        sum_digits += int(digit)
+    if sum_digits > 24:
+        print("4)", n, strochka2, sum_digits)
+
+        break
